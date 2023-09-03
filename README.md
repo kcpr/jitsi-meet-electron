@@ -20,7 +20,7 @@ Download our latest release and you're off to the races!
 
 | Windows | macOS | GNU/Linux (AppImage) | GNU/Linux (Deb) |
 | -- | -- | -- | -- |
-| [Download](https://github.com/jitsi/jitsi-meet-electron/releases/latest/download/jitsi-meet.exe) | [Download](https://github.com/jitsi/jitsi-meet-electron/releases/latest/download/jitsi-meet.dmg) | [Download](https://github.com/jitsi/jitsi-meet-electron/releases/latest/download/jitsi-meet-x86_64.AppImage) | [Download](https://github.com/jitsi/jitsi-meet-electron/releases/latest/download/jitsi-meet-amd64.deb) |
+| [Download](https://github.com/jitsi/jitsi-meet-electron/releases/latest/download/jitsi-meet.exe) | [Download](https://github.com/jitsi/jitsi-meet-electron/releases/latest/download/jitsi-meet.dmg) | [x64_64](https://github.com/jitsi/jitsi-meet-electron/releases/latest/download/jitsi-meet-x86_64.AppImage) [arm64](https://github.com/jitsi/jitsi-meet-electron/releases/latest/download/jitsi-meet-arm64.AppImage) | [x86_64](https://github.com/jitsi/jitsi-meet-electron/releases/latest/download/jitsi-meet-amd64.deb) [arm64](https://github.com/jitsi/jitsi-meet-electron/releases/latest/download/jitsi-meet-arm64.deb) |
 
 NOTE: The GNU/Linux builds are 64-bit only.
 
@@ -146,7 +146,9 @@ On macOS Catalina, a warning will be displayed on first install. The app won't o
 
 * If you can't execute the file directly after downloading it, try running `chmod u+x ./jitsi-meet-x86_64.AppImage`
 
-* Under wayland, screensharing is not currently supported (due to https://github.com/electron/electron/issues/37463), and the app will crash with a segfault!
+* Under wayland, screensharing is currently buggy:
+  * The app will crash on stopping screensharing
+  * When trying to start screensharing under wayland, 2 permission popups will show up. In both, something needs to be allowed, then in the following jitsi-internal selector, be quick (<2 seconds) to select a screen or application to start the screensharing. If you take longer, then the permission pupups will come again. If you cancel one of the permission popups, screensharing cannot be started successfully. These issues are known to the electron project and currently a limitation of electron under wayland. Use a browser to share your screen with wayland. X11 is not affected by this.
 
 * On Ubuntu 22.04, the AppImage will fail with a fuse error (as the AppImage uses `libfuse2`, while 22.04 comes with `libfuse3` by default):
 
